@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>READING SCHOOL 영어도서관</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans KR',Georgia,sans-serif;color:#1a1a2e;background:#fff;}
+:root{
+  --teal:#1B7A6E;
+  --teal-light:#2AA898;
+  --teal-pale:#E6F5F3;
+  --gold:#C9A84C;
+  --gold-light:#F0D98A;
+  --navy:#0D1F3C;
+  --navy2:#162840;
+  --cream:#FAF7F2;
+  --cream2:#F3EDE3;
+  --text:#1a1a2e;
+  --muted:#5a6a7a;
+  --kakao:#FEE500;
+}
+html{scroll-behavior:smooth;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:64px;}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-icon{width:46px;height:46px;background:linear-gradient(145deg,#1B9A8A,#0E6B5E);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(27,122,110,.5);gap:1px;}
+.logo-icon svg{width:22px;height:16px;}
+.logo-rs{font-size:9px;font-weight:800;color:rgba(255,255,255,.9);letter-spacing:2px;line-height:1;}
+.logo-text{line-height:1.25;}
+.logo-text strong{display:block;font-size:15px;font-weight:800;color:#fff;letter-spacing:.5px;}
+.logo-text span{display:block;font-size:10.5px;color:rgba(255,255,255,.55);letter-spacing:1.5px;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{text-decoration:none;font-size:13px;color:rgba(255,255,255,.7);cursor:pointer;transition:color .2s;letter-spacing:.3px;}
+.nav-links a:hover{color:#fff;}
+.nav-right{display:flex;gap:8px;}
+.btn-kakao-nav{background:var(--kakao);color:#3a1d00;border:none;padding:8px 15px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:4px;}
+.btn-consult-nav{background:var(--teal);color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;letter-spacing:.3px;}
+
+/* HERO */
+#hero{background:var(--navy);padding:0;position:relative;overflow:hidden;min-height:580px;display:flex;align-items:stretch;}
+.hero-bg-img{position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><rect fill="%230D1F3C" width="400" height="400"/></svg>') center/cover;opacity:1;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(13,31,60,.97) 45%,rgba(13,31,60,.6) 100%);}
+.hero-inner{position:relative;z-index:2;max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:48px;padding:72px 40px;}
+.hero-text{flex:1;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:5px 14px;border-radius:4px;margin-bottom:20px;letter-spacing:1.5px;}
+.hero-title{font-size:40px;font-weight:900;color:#fff;line-height:1.2;margin-bottom:10px;}
+.hero-title em{color:var(--gold);font-style:normal;}
+.hero-sub{font-size:15px;font-weight:600;color:var(--teal-light);margin-bottom:16px;letter-spacing:.3px;}
+.hero-desc{font-size:14px;color:rgba(255,255,255,.65);line-height:1.9;margin-bottom:32px;max-width:480px;}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.btn-gold{background:var(--gold);color:#1a0f00;border:none;padding:14px 28px;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:.3px;}
+.btn-outline-w{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35);padding:13px 22px;border-radius:6px;font-size:13.5px;font-weight:500;cursor:pointer;}
+.btn-kakao-hero{background:var(--kakao);color:#3a1d00;border:none;padding:14px 20px;border-radius:6px;font-size:13.5px;font-weight:700;cursor:pointer;}
+.hero-cards{flex:0 0 280px;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.h-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:16px 12px;text-align:center;backdrop-filter:blur(4px);}
+.h-card .icon{font-size:24px;margin-bottom:8px;}
+.h-card strong{display:block;font-size:13px;font-weight:700;color:#fff;margin-bottom:3px;}
+.h-card p{font-size:11px;color:rgba(255,255,255,.55);line-height:1.5;}
+
+/* DIVIDER STRIP */
+.strip{background:linear-gradient(90deg,var(--teal),var(--teal-light),var(--gold));height:4px;}
+
+/* ONE 3-IN-1 */
+.one-section{background:var(--cream);padding:52px 40px;}
+.one-inner{max-width:1000px;margin:0 auto;text-align:center;}
+.one-label{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--teal);margin-bottom:6px;}
+.one-title{font-size:24px;font-weight:800;color:var(--navy);margin-bottom:28px;}
+.one-cards{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+.one-card{background:#fff;border:1px solid #e0d8cc;border-radius:12px;padding:28px 36px;text-align:center;min-width:200px;border-top:3px solid var(--teal);}
+.one-num{font-size:42px;font-weight:900;color:var(--gold);line-height:1;}
+.one-card h3{font-size:16px;font-weight:700;color:var(--navy);margin:6px 0 6px;}
+.one-card p{font-size:12px;color:var(--muted);line-height:1.6;}
+
+/* TAGLINE */
+.tagline-section{background:var(--teal);padding:32px 40px;text-align:center;}
+.tagline-section h2{font-size:20px;font-weight:800;color:#fff;}
+.tagline-section h2 em{font-style:normal;color:var(--gold-light);}
+.tagline-section p{font-size:13px;color:rgba(255,255,255,.75);margin-top:7px;line-height:1.8;}
+
+/* SECTIONS */
+section{padding:64px 40px;}
+.section-inner{max-width:1000px;margin:0 auto;}
+.section-tag{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--teal);margin-bottom:7px;}
+.section-title{font-size:26px;font-weight:800;color:var(--navy);margin-bottom:12px;line-height:1.3;}
+.section-desc{font-size:14px;color:var(--muted);line-height:1.85;max-width:580px;}
+
+/* PROCESS */
+#process{background:#fff;}
+.process-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:36px;}
+.proc-card{background:var(--cream);border-radius:12px;padding:22px 12px;text-align:center;position:relative;border:1px solid #e8e0d5;}
+.proc-num{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--teal);color:#fff;font-size:10.5px;font-weight:700;padding:3px 12px;border-radius:20px;white-space:nowrap;}
+.proc-icon{font-size:26px;margin:10px 0 10px;}
+.proc-card h4{font-size:12.5px;font-weight:700;color:var(--navy);margin-bottom:5px;line-height:1.4;}
+.proc-card p{font-size:11px;color:var(--muted);line-height:1.6;}
+
+/* LEVELS */
+#levels{background:var(--cream);}
+.levels-grid{display:flex;flex-direction:column;gap:10px;margin-top:30px;}
+.level-row{display:flex;align-items:flex-start;gap:16px;background:#fff;border-radius:10px;padding:18px 20px;border-left:5px solid #ddd;border:1px solid #ede8e0;border-left-width:5px;}
+.level-row.red{border-left-color:#C94040;}
+.level-row.orange{border-left-color:#D97B2A;}
+.level-row.yellow{border-left-color:#C9A030;}
+.level-row.green{border-left-color:#2A8A6A;}
+.level-row.blue{border-left-color:#1B5EA0;}
+.level-badge{flex:0 0 80px;padding:8px 6px;border-radius:8px;text-align:center;font-weight:700;font-size:12px;color:#fff;}
+.red .level-badge{background:#C94040;}
+.orange .level-badge{background:#D97B2A;}
+.yellow .level-badge{background:#C9A030;color:#fff;}
+.green .level-badge{background:#2A8A6A;}
+.blue .level-badge{background:#1B5EA0;}
+.level-badge span{display:block;font-size:10px;font-weight:400;opacity:.85;margin-top:2px;}
+.level-info h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.level-info p{font-size:13px;color:var(--muted);line-height:1.75;}
+
+/* ABOUT */
+#about{background:#fff;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center;margin-top:32px;}
+.about-img{border-radius:16px;overflow:hidden;aspect-ratio:1;background:#f0ece5;display:flex;align-items:center;justify-content:center;}
+.about-img img{width:100%;height:100%;object-fit:cover;border-radius:16px;}
+.about-info h3{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:4px;}
+.about-info .title{font-size:13px;color:var(--teal);font-weight:700;margin-bottom:16px;letter-spacing:.5px;}
+.about-info p{font-size:13.5px;color:var(--muted);line-height:1.9;margin-bottom:14px;}
+.philosophy{background:var(--cream);border-radius:10px;padding:16px 18px;border-left:4px solid var(--gold);}
+.philosophy p{font-size:13.5px;color:#4a3a20;line-height:1.8;font-style:italic;}
+
+/* LIBRARY */
+#library{background:var(--cream);}
+.library-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-top:30px;}
+.lib-points{display:flex;flex-direction:column;gap:16px;}
+.lib-point{display:flex;align-items:flex-start;gap:12px;}
+.lib-dot{flex:0 0 34px;height:34px;border-radius:8px;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;}
+.lib-point h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:3px;}
+.lib-point p{font-size:13px;color:var(--muted);line-height:1.75;}
+.lib-visual{background:var(--navy);border-radius:16px;padding:32px;text-align:center;}
+.lib-visual .big-num{font-size:56px;font-weight:900;color:var(--gold);line-height:1;}
+.lib-visual .big-label{font-size:12.5px;color:rgba(255,255,255,.55);margin-bottom:20px;}
+.lib-index{text-align:left;background:rgba(255,255,255,.06);border-radius:10px;padding:14px;margin-top:8px;}
+.lib-index div{font-size:12.5px;color:rgba(255,255,255,.8);line-height:2;}
+.lib-index strong{color:#fff;}
+.level-pills{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:16px;}
+.pill{padding:5px 14px;border-radius:4px;font-size:11.5px;font-weight:700;color:#fff;}
+
+/* CONTACT */
+#contact{background:var(--navy2);color:#fff;padding:64px 40px;}
+.contact-wrap{max-width:1000px;margin:0 auto;}
+.contact-top{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start;margin-bottom:36px;}
+.contact-info h2{font-size:24px;font-weight:800;margin-bottom:8px;}
+.contact-info p{font-size:13px;opacity:.65;line-height:1.8;margin-bottom:22px;}
+.c-items{display:flex;flex-direction:column;gap:14px;}
+.c-item{display:flex;align-items:flex-start;gap:12px;}
+.c-icon{font-size:16px;margin-top:2px;opacity:.8;}
+.c-item h4{font-size:11.5px;opacity:.5;margin-bottom:2px;letter-spacing:.5px;}
+.c-item p{font-size:13.5px;font-weight:500;line-height:1.6;}
+.kakao-btn-big{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--kakao);color:#3a1d00;border:none;padding:13px 20px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;width:100%;margin-top:18px;}
+.consult-box{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:28px;}
+.consult-box h3{font-size:17px;font-weight:800;margin-bottom:5px;}
+.consult-box .sub{font-size:12px;opacity:.55;margin-bottom:18px;}
+.consult-box input,.consult-box textarea{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:7px;padding:11px 13px;color:#fff;font-size:13px;margin-bottom:9px;outline:none;}
+.consult-box input::placeholder,.consult-box textarea::placeholder{color:rgba(255,255,255,.35);}
+.consult-box textarea{height:74px;resize:none;}
+.submit-btn{width:100%;background:var(--teal);border:none;color:#fff;padding:13px;border-radius:7px;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:.5px;}
+.map-wrap{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.12);}
+.map-addr{font-size:12.5px;opacity:.5;margin-bottom:10px;}
+.map-btn{display:inline-flex;align-items:center;gap:6px;background:var(--kakao);color:#3a1d00;border:none;padding:9px 20px;border-radius:7px;font-size:12.5px;font-weight:700;cursor:pointer;margin-top:12px;}
+
+footer{background:#080f1c;color:rgba(255,255,255,.35);text-align:center;padding:18px;font-size:11.5px;letter-spacing:.3px;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11 2C8.5 0.5 4 1 2 2L2 14C4 13 8.5 13.5 11 15C13.5 13.5 18 13 20 14L20 2C18 1 13.5 0.5 11 2Z" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.95)" stroke-width="1.1" stroke-linejoin="round"/>
+        <line x1="11" y1="2" x2="11" y2="15" stroke="rgba(255,255,255,0.95)" stroke-width="1.1"/>
+        <line x1="4.5" y1="5" x2="9.5" y2="4.2" stroke="rgba(255,255,255,0.75)" stroke-width="0.85" stroke-linecap="round"/>
+        <line x1="4.5" y1="7.5" x2="9.5" y2="6.7" stroke="rgba(255,255,255,0.75)" stroke-width="0.85" stroke-linecap="round"/>
+        <line x1="4.5" y1="10" x2="9.5" y2="9.2" stroke="rgba(255,255,255,0.5)" stroke-width="0.85" stroke-linecap="round"/>
+        <line x1="17.5" y1="5" x2="12.5" y2="4.2" stroke="rgba(255,255,255,0.75)" stroke-width="0.85" stroke-linecap="round"/>
+        <line x1="17.5" y1="7.5" x2="12.5" y2="6.7" stroke="rgba(255,255,255,0.75)" stroke-width="0.85" stroke-linecap="round"/>
+        <line x1="17.5" y1="10" x2="12.5" y2="9.2" stroke="rgba(255,255,255,0.5)" stroke-width="0.85" stroke-linecap="round"/>
+      </svg>
+      <span class="logo-rs">RS</span>
+    </div>
+    <div class="logo-text">
+      <strong>READING SCHOOL</strong>
+      <span>영어도서관</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a onclick="document.getElementById('process').scrollIntoView({behavior:'smooth'})">학습과정</a></li>
+    <li><a onclick="document.getElementById('levels').scrollIntoView({behavior:'smooth'})">레벨프로그램</a></li>
+    <li><a onclick="document.getElementById('library').scrollIntoView({behavior:'smooth'})">영어도서관</a></li>
+    <li><a onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">학원소개</a></li>
+    <li><a onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">오시는길</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="btn-kakao-nav" onclick="openLink('https://open.kakao.com/o/XXXXXXX')">💬 카카오 상담</button>
+    <button class="btn-consult-nav" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">학원 문의 상담</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-eyebrow">📚 영어 독서 논술 전문 · 하남</div>
+      <h1 class="hero-title">다독은 영어를 익히는<br><em>유일한</em> 방법입니다!</h1>
+      <p class="hero-sub">자기주도 학습 훈련을 위한 체계적·통합적 프로그램</p>
+      <p class="hero-desc">시험공부만을 위한 분석식 영어는 이제 그만! 독서를 통한 풍부하고 자연스러운 <strong style="color:#fff;">듣고, 읽고, 쓰고, 말하는</strong> 진짜 영어학습을 제공합니다.</p>
+      <div class="hero-btns">
+        <button class="btn-gold" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">무료 레벨테스트 신청</button>
+        <button class="btn-kakao-hero" onclick="openLink('https://open.kakao.com/o/XXXXXXX')">💬 카카오톡 상담</button>
+        <button class="btn-outline-w" onclick="document.getElementById('levels').scrollIntoView({behavior:'smooth'})">프로그램 보기</button>
+      </div>
+    </div>
+    <div class="hero-cards">
+      <div class="h-card"><div class="icon">🎧</div><strong>CD 오디오북</strong><p>집중듣기<br>따라듣기</p></div>
+      <div class="h-card"><div class="icon">📝</div><strong>Book Report</strong><p>Essay·Writing<br>Skill 증진</p></div>
+      <div class="h-card"><div class="icon">📊</div><strong>Book Quiz</strong><p>르네상스레벨<br>테스트</p></div>
+      <div class="h-card"><div class="icon">💬</div><strong>1:1 영어토론</strong><p>개별첨삭<br>독후활동</p></div>
+    </div>
+  </div>
+</section>
+<div class="strip"></div>
+
+<!-- 3 IN 1 -->
+<div class="one-section">
+  <div class="one-inner">
+    <p class="one-label">READING SCHOOL = 3 IN 1</p>
+    <h2 class="one-title">하나의 학원에서 세 가지를 한 번에</h2>
+    <div class="one-cards">
+      <div class="one-card"><div class="one-num">1</div><h3>리딩스쿨</h3><p>Reading School<br>영어 독서 전문 과정</p></div>
+      <div class="one-card"><div class="one-num">1</div><h3>영어도서관</h3><p>English Library<br>AR·Lexile 레벨 도서</p></div>
+      <div class="one-card"><div class="one-num">1</div><h3>교육과정</h3><p>독서활동 + 중등내신관리<br>통합 학습 시스템</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- TAGLINE -->
+<div class="tagline-section">
+  <h2>1:1 맞춤형 영어도서관 <em>리딩스쿨</em></h2>
+  <p>개인 수준별 추천책 선정부터 독후활동까지 — 아이 한 명 한 명에게 꼭 맞는 맞춤형 독서 환경을 제공합니다.</p>
+</div>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-inner">
+    <p class="section-tag">LEARNING PROCESS</p>
+    <h2 class="section-title">자기주도 통합 학습 5단계</h2>
+    <p class="section-desc">리딩스쿨은 체계적인 5단계 학습 과정으로 영어 실력을 종합적으로 키워드립니다.</p>
+    <div class="process-grid">
+      <div class="proc-card"><div class="proc-num">STEP 1</div><div class="proc-icon">📋</div><h4>개인 수준별<br>추천책 선정</h4><p>AR·Lexile 기반 맞춤 도서 배정</p></div>
+      <div class="proc-card"><div class="proc-num">STEP 2</div><div class="proc-icon">🎧</div><h4>CD 오디오북<br>듣기 훈련</h4><p>집중듣기·따라듣기로 듣기 능력 향상</p></div>
+      <div class="proc-card"><div class="proc-num">STEP 3</div><div class="proc-icon">📊</div><h4>리딩스쿨<br>Book Quiz</h4><p>르네상스레벨 테스트로 독해력 확인</p></div>
+      <div class="proc-card"><div class="proc-num">STEP 4</div><div class="proc-icon">📝</div><h4>Book Report<br>작성</h4><p>Essay 및 Writing Skill 지속 증진</p></div>
+      <div class="proc-card"><div class="proc-num">STEP 5</div><div class="proc-icon">💬</div><h4>1:1 영어토론<br>개별첨삭</h4><p>선생님과 1:1로 독후활동 완성</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- LEVELS -->
+<section id="levels">
+  <div class="section-inner">
+    <p class="section-tag">LEVEL PROGRAM</p>
+    <h2 class="section-title">5단계 레벨 프로그램</h2>
+    <p class="section-desc">AR 지수를 기반으로 체계적으로 구성된 5단계 레벨 시스템으로 아이의 현재 수준에서 고급 단계까지 성장합니다.</p>
+    <div class="levels-grid">
+      <div class="level-row red"><div class="level-badge">RED<span>AR 0~1</span></div><div class="level-info"><h4>입문 단계 · 유아~초등 저학년</h4><p>영어를 처음 접하는 아이부터 초등 저학년 위주의 책들로 구성. 반복되는 단어나 음가를 바탕으로 소리 내어 읽기를 할 수 있도록 구성된 책들로 파닉스 기초를 다집니다.</p></div></div>
+      <div class="level-row orange"><div class="level-badge">ORANGE<span>AR 1~2</span></div><div class="level-info"><h4>기초 단계 · 초등 저학년</h4><p>Story Book으로써 한 가지 주제로 짧은 이야기를 구성하며, 간단한 질문과 대답을 요하는 수준으로 구성된 책들로 독서 흥미를 높입니다.</p></div></div>
+      <div class="level-row yellow"><div class="level-badge">YELLOW<span>AR 2~3</span></div><div class="level-info"><h4>초급 단계 · 초등 저~중학년</h4><p>영미권의 유명 작가들의 작품을 별도의 섹션으로 마련하여 이들의 책들을 음미하고 즐길 수 있는 기회를 제공합니다. 문학적 감수성을 키웁니다.</p></div></div>
+      <div class="level-row green"><div class="level-badge">GREEN<span>AR 3~4</span></div><div class="level-info"><h4>중급 단계 · 초등 중~고학년</h4><p>본격적인 Reading이 시작되는 단계. 줄거리가 다소 복잡해지지만 시리즈인 경우 동일한 캐릭터를 중심으로 전개되어 독서 부담감을 줄여주도록 구성되었습니다.</p></div></div>
+      <div class="level-row blue"><div class="level-badge">BLUE<span>AR 4+</span></div><div class="level-info"><h4>고급 단계 · 초등 고학년~</h4><p>다양한 주제로 이루어져 있으며 사회·역사·인물 등 광범위한 영역에 걸쳐 문학적 이해도 요구하는 수준 높은 책들로, Newbery·Caldecott 등 유명 수상작 위주로 구성.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIBRARY -->
+<section id="library">
+  <div class="section-inner">
+    <p class="section-tag">ENGLISH LIBRARY</p>
+    <h2 class="section-title">리딩스쿨 영어도서관</h2>
+    <p class="section-desc">영미권에서 추천된 권장 도서들로 구성된 엄선된 영어 도서관입니다.</p>
+    <div class="library-grid">
+      <div class="lib-points">
+        <div class="lib-point"><div class="lib-dot">📗</div><div><h4>영미권 권장 도서 엄선</h4><p>영미권에서 실제 추천·사용되는 도서들로만 구성하여 실질적인 영어 환경을 제공합니다.</p></div></div>
+        <div class="lib-point"><div class="lib-dot">🎚️</div><div><h4>파닉스부터 Essay까지</h4><p>영어를 처음 접하는 아이부터 성인까지 읽을 수 있는 다양한 수준의 도서를 보유합니다.</p></div></div>
+        <div class="lib-point"><div class="lib-dot">🌱</div><div><h4>정서·창의성 함께 성장</h4><p>영어 실력뿐만 아니라 정서적 풍부함, 무한한 상상력과 창의성을 키워주는 책들로 구성되어 있습니다.</p></div></div>
+        <div class="lib-point"><div class="lib-dot">📊</div><div><h4>AR & Lexile 레벨 시스템</h4><p>영미권에서 사용하는 AR Reading Level과 Lexile 지수를 바탕으로 도서를 단계별로 체계화하였습니다.</p></div></div>
+      </div>
+      <div class="lib-visual">
+        <div class="big-num">5</div>
+        <div class="big-label">체계적인 레벨 단계</div>
+        <div class="lib-index">
+          <div>📏 <strong>AR Reading Level</strong><br><span style="font-size:11px;opacity:.6;">Accelerated Reader 국제 공인 독서 지수</span></div>
+          <div style="margin-top:10px;">📏 <strong>Lexile 지수</strong><br><span style="font-size:11px;opacity:.6;">미국 공교육 표준 독서 수준 지표</span></div>
+        </div>
+        <div class="level-pills">
+          <span class="pill" style="background:#C94040;">RED</span>
+          <span class="pill" style="background:#D97B2A;">ORANGE</span>
+          <span class="pill" style="background:#C9A030;">YELLOW</span>
+          <span class="pill" style="background:#2A8A6A;">GREEN</span>
+          <span class="pill" style="background:#1B5EA0;">BLUE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="background:#fff;">
+  <div class="section-inner">
+    <p class="section-tag">ABOUT US</p>
+    <h2 class="section-title">학원 소개</h2>
+    <div class="about-grid">
+      <div class="about-img">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="about-img-el" alt="리딩스쿨 영어도서관 학원 소개" style="width:100%;height:100%;object-fit:cover;border-radius:16px;display:none;">
+        <div id="about-placeholder" style="text-align:center;padding:40px 20px;color:var(--muted);">
+          <div style="font-size:48px;margin-bottom:12px;">👩‍🏫</div>
+          <p style="font-size:13px;">학원 소개 이미지</p>
+        </div>
+      </div>
+      <div class="about-info">
+        <h3>READING SCHOOL 영어도서관</h3>
+        <div class="title">원장</div>
+        <p>리딩스쿨 영어도서관은 "영어를 배우는 가장 좋은 방법은 책 읽기"라는 확신에서 출발했습니다. 아이들이 영어 원서를 통해 언어를 자연스럽게 체득하고, 동시에 풍부한 감수성과 창의력을 키울 수 있도록 최선을 다하고 있습니다.</p>
+        <p>영미권에서 검증된 도서 레벨 시스템(AR·Lexile)을 도입하여 각 아이의 수준에 맞는 맞춤 독서 환경을 제공하며, 독서활동부터 중등 내신관리까지 통합적으로 지원합니다.</p>
+        <div class="philosophy"><p>"파닉스 기초부터 Essay까지, 책 읽는 즐거움을 통해 자연스럽게 영어를 완성하는 것이 우리의 목표입니다."</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding:64px 40px;background:var(--navy2);color:#fff;">
+  <div class="contact-wrap">
+    <div class="contact-top">
+      <div class="contact-info">
+        <h2>오시는 길 & 학원 문의 상담</h2>
+        <p>궁금한 점은 언제든지 연락 주세요.<br>카카오톡으로 편리하게 상담받으실 수 있습니다.</p>
+        <div class="c-items">
+          <div class="c-item"><div class="c-icon">📍</div><div><h4>주소</h4><p>경기도 하남시 하남대로 786-1<br>선진빌딩 3층</p></div></div>
+          <div class="c-item"><div class="c-icon">📞</div><div><h4>전화</h4><p>031-796-4805 / 010-5445-6741</p></div></div>
+          <div class="c-item"><div class="c-icon">🕐</div><div><h4>운영시간</h4><p>월~금 오후 1시 ~ 9시<br>토요일 오전 10시 ~ 오후 5시</p></div></div>
+        </div>
+        <button class="kakao-btn-big" onclick="openLink('https://open.kakao.com/o/XXXXXXX')">💬 카카오톡 오픈채팅으로 바로 상담하기</button>
+      </div>
+      <div class="consult-box">
+        <h3>무료 레벨테스트 신청</h3>
+        <p class="sub">이름과 연락처를 남겨주시면 빠르게 연락드립니다.</p>
+        <input type="text" placeholder="학생 이름">
+        <input type="text" placeholder="학년 / 나이">
+        <input type="text" placeholder="연락처 (전화번호)">
+        <textarea placeholder="문의 내용 또는 상담 희망 시간을 적어주세요."></textarea>
+        <button class="submit-btn">무료 레벨테스트 신청하기 →</button>
+      </div>
+    </div>
+    <div>
+      <p class="map-addr">📍 경기도 하남시 하남대로 786-1 선진빌딩 3층</p>
+      <div class="map-wrap" style="width:100%;height:300px;">
+        <iframe src="https://map.kakao.com/link/map/리딩스쿨영어도서관,37.5392,127.2144/embed" style="width:100%;height:100%;border:none;" allowfullscreen></iframe>
+      </div>
+      <button class="map-btn" onclick="openLink('https://map.kakao.com/link/to/리딩스쿨영어도서관,37.5392,127.2144')">🗺️ 카카오맵으로 길찾기</button>
+    </div>
+  </div>
+</section>
+
+<footer>© 2025 READING SCHOOL 영어도서관 &nbsp;|&nbsp; 경기도 하남시 하남대로 786-1 선진빌딩 3층 &nbsp;|&nbsp; 031-796-4805</footer>
+
+<script>
+// 업로드된 이미지를 학원소개 섹션에 표시
+(function(){
+  try {
+    const imgs = document.querySelectorAll('img[src]');
+    // 외부에서 전달된 이미지가 있으면 about 섹션에 사용
+    const aboutImg = document.getElementById('about-img-el');
+    const aboutPh = document.getElementById('about-placeholder');
+    // 부모 창의 첨부 이미지 URL 시도
+    if(window.parent && window.parent.document){
+      const parentImgs = window.parent.document.querySelectorAll('img');
+      for(const img of parentImgs){
+        if(img.src && img.src.includes('blob:')){
+          aboutImg.src = img.src;
+          aboutImg.style.display = 'block';
+          aboutPh.style.display = 'none';
+          break;
+        }
+      }
+    }
+  } catch(e){}
+})();
+</script>
+</body>
+</html>
